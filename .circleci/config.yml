@@ -1,16 +1,32 @@
-version: '2.1'
+version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@2.0
+  node: circleci/node@4.1.0
+  aws-cli: circleci/aws-cli@1.3.1
 jobs:
-  aws-cli-cred-setup:
-    executor: aws-cli/default
+  build:
+    docker:
+      - image: 'cimg/base:stable'
     steps:
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY
-          aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: AWS_REGION_NAME
-workflows:
-  aws-cli:
-    jobs:
-      - aws-cli-cred-setup:
-          context: aws
+      # - node/install
+      # - checkout
+      - aws-cli/setup
+      - run:
+          name: Front-End Install
+          command: |
+            npm run frontend:install
+      # - run:
+      #     name: Back-End Install
+      #     command: |
+      #       npm run backend:install
+      - run:
+          name: Front-End Build
+          command: |
+            npm run frontend:build
+      # - run:
+      #     name: Back-End Build
+      #     command: |
+      #       npm run backend:build
+      - run:
+          name: Deploy App
+          command: |
+            npm run frontend:deploy
