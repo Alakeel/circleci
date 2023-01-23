@@ -1,19 +1,11 @@
 version: 2.1
 orbs:
-  node: circleci/node@5.0.2
-  aws-cli: circleci/aws-cli@3.1.1
-  eb: circleci/aws-elastic-beanstalk@2.0.1
+  node: circleci/node@4.1.0
+  aws-cli: circleci/aws-cli@1.3.1
 jobs:
-  aws-cli-cred-setup:
-    executor: aws-cli/default
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_DEFAULT_REGION
   build:
     docker:
-      - image: 'cimg/node:14.15'
+      - image: 'cimg/base:stable'
     steps:
       - node/install
       - checkout
