@@ -26,3 +26,11 @@ git add -A
 git commit -m "Initial commit"
 git push --set-upstream origin lesson-4-exercise-1
 ```
+
+## Trigger Pipline
+```
+git add -A
+git commit -m "Update circleCI config"
+git status
+git push --set-upstream origin master
+```
