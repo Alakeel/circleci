@@ -35,3 +35,18 @@ git status
 git push --set-upstream origin master
 ```
 
+## terminate
+```
+eb list
+eb terminate
+```
+
+
+```
+cd code/reactnd-contacts-server/
+# Use Node.js version v12 or v14 and the default AWS region, us-east-1
+eb init
+# Verify the Node.js version and region in .elasticbeanstalk/config.yml file
+cat .elasticbeanstalk/config.yml
+eb create --sample --single --instance-types t2.small
+```
